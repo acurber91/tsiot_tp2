@@ -1,0 +1,17 @@
+{
+  "name": "lista-tdd",
+  "version": "1.0.0",
+  "description": "Trabajo Práctico Nº2 de la materia Testing de Sistemas de Internet de las Cosas",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "coverage": "nyc --reporter=html mocha"
+  },
+  "author": "Agustín Curcio Berardi",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0"
+  }
+}
