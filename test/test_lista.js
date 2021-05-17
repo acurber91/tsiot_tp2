@@ -1,5 +1,4 @@
 /*
- * Cuando se agrega una clave que ya está en la lista se actualiza el valor correspondiente.
  * Cuando se agregan un elemento a una lista vacía la lista de claves esta ordenada.
  * Cuando se agrega un elemento al principio la lista de claves esta ordenada.
  * Cuando se agrega un elemento al final la lista de claves esta ordenada.
@@ -8,7 +7,7 @@
 const assert = require("chai").assert;
 const Lista = require("../src/lista.js");
 
-describe("En una lista vacia:", function() {
+describe("En una lista vacía:", function() {
     var lista = new Lista();
     it("Hay cero elementos.", function() {
         assert.equal(lista.count(), 0);
@@ -27,4 +26,10 @@ describe("Cuando se crea una lista con un elemento:", function() {
     it("Se recupera el valor a partir de la clave.", function() {
         assert.equal(lista.find("clave"), "valor");
     })
+    it("Si se agrega una clave existente, se actualiza el valor.", function() {
+        lista.add("clave", "actualizado");
+        assert.equal(lista.find("clave"), "actualizado");
+        assert.equal(lista.count(), 1);
+    })
 })
+
