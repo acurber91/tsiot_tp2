@@ -29,13 +29,33 @@ module.exports = class Lista {
         }
     }
 
+    sort() {
+        this.#elementos.sort(function(a, b) {
+            if(a.clave < b.clave) { 
+                return -1; 
+            }
+            else if(a.clave > b.clave) { 
+                return 1; 
+            }
+            else {
+                return 0;
+            }
+        });
+    }
+
     add(clave, valor) {
         var index = this.find_clave(clave);
         if(isNaN(index)) {
             this.#elementos.push({clave, valor});
+            this.sort();
         }
         else {
             this.#elementos[index].valor = valor;
         }
+    }
+
+    find_all()
+    {
+        return this.#elementos;
     }
 };

@@ -1,5 +1,4 @@
 /*
- * Cuando se agregan un elemento a una lista vacía la lista de claves esta ordenada.
  * Cuando se agrega un elemento al principio la lista de claves esta ordenada.
  * Cuando se agrega un elemento al final la lista de claves esta ordenada.
  */
@@ -33,3 +32,10 @@ describe("Cuando se crea una lista con un elemento:", function() {
     })
 })
 
+describe("Cuando se agrega un elemento a una lista vacía:", function() {
+    var lista = new Lista();
+    lista.add("edificio", "casa");
+    it("Está ordenada.", function() {
+        assert.deepEqual(lista.find_all(), [{clave: "edificio", valor: "casa"}]);
+    })
+})
