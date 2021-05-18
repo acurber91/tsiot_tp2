@@ -1,6 +1,11 @@
-/*
-
- */
+/* 
+ * Testing de Sistemas de Internet de las Cosas
+ * Carrera de Especialización en Internet de las Cosas (CEIoT)
+ * 
+ * El siguiente programa cumple con los requisitos del Trabajo Práctico Nº2.
+ * 
+ * Autor: Esp. Ing. Agustín Curcio Berardi
+*/
 
 const assert = require("chai").assert;
 const Lista = require("../src/lista.js");
@@ -35,7 +40,7 @@ describe("Cuando se crea una lista con un elemento:", function() {
     })
 })
 
-describe("Cuando se agrega un elemento:", function() {
+describe("Cuando se agrega un elemento a una lista vacía:", function() {
     var lista = new Lista();
     it("La lista está ordenada.", function() {
         lista.add("edificio", "casa");

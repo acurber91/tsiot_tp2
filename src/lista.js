@@ -1,3 +1,12 @@
+/* 
+ * Testing de Sistemas de Internet de las Cosas
+ * Carrera de Especialización en Internet de las Cosas (CEIoT)
+ * 
+ * El siguiente programa cumple con los requisitos del Trabajo Práctico Nº2.
+ * 
+ * Autor: Esp. Ing. Agustín Curcio Berardi
+*/
+
 module.exports = class Lista {
     
     #elementos;
@@ -6,6 +15,7 @@ module.exports = class Lista {
         this.#elementos = [];
     }
 
+    // Devuelve el índice correspondiente a una clave del vector.
     find_clave(clave) {
         for(var i = 0; i < this.#elementos.length; i++) {
             if(this.#elementos[i].clave == clave) {
@@ -15,10 +25,12 @@ module.exports = class Lista {
         return NaN;
     }
     
+    // Devuelve la cantidad total de elementos del vector.
     count() {
         return this.#elementos.length;
     }
 
+    // Devuelve un valor a partir de su clave.
     find(clave) {
         var index = this.find_clave(clave);
         if(isNaN(index)) {
@@ -29,10 +41,13 @@ module.exports = class Lista {
         }
     }
 
+    // Ordena alfabéticamente las claves del vector.
     sort() {
         this.#elementos.sort((a, b) => a.clave.localeCompare(b.clave))
     }
 
+    // Agrega un conjunto clave - valor al vector. Si la clave ya existe, 
+    // actualiza el valor asociado.
     add(clave, valor, order = true) {
         if(typeof clave === "string" && typeof valor === "string") {
             var index = this.find_clave(clave);
@@ -51,11 +66,13 @@ module.exports = class Lista {
         }
     }
 
+    // Devuelve todos los elementos del vector.
     find_all()
     {
         return this.#elementos;
     }
 
+    // Elimina un conjunto clave - valor a partir de una clave.
     delete(clave)
     {
         var index = this.find_clave(clave);
