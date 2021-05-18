@@ -30,27 +30,24 @@ module.exports = class Lista {
     }
 
     sort() {
-        this.#elementos.sort(function(a, b) {
-            if(a.clave < b.clave) { 
-                return -1; 
-            }
-            else if(a.clave > b.clave) { 
-                return 1; 
-            }
-            else {
-                return 0;
-            }
-        });
+        this.#elementos.sort((a, b) => a.clave.localeCompare(b.clave))
     }
 
-    add(clave, valor) {
-        var index = this.find_clave(clave);
-        if(isNaN(index)) {
-            this.#elementos.push({clave, valor});
-            this.sort();
-        }
-        else {
-            this.#elementos[index].valor = valor;
+    add(clave, valor, order = true) {
+        if(typeof clave === "string" && typeof valor === "string") {
+            var index = this.find_clave(clave);
+            if(isNaN(index)) {
+                if(order == true) {
+                    this.#elementos.push({clave, valor});
+                }
+                else {
+                    this.#elementos.unshift({clave, valor});
+                }
+                this.sort();
+            }
+            else {
+                this.#elementos[index].valor = valor;
+            }
         }
     }
 
