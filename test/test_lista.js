@@ -35,18 +35,26 @@ describe("Cuando se crea una lista con un elemento:", function() {
     })
 })
 
-describe("Cuando se agrega un elemento a una lista vacía:", function() {
+describe("Cuando se agrega un elemento:", function() {
     var lista = new Lista();
-    lista.add("edificio", "casa");
-    it("Está ordenada.", function() {
+    it("La lista está ordenada.", function() {
+        lista.add("edificio", "casa");
         assert.deepEqual(lista.find_all(), [{clave: "edificio", valor: "casa"}]);
+        assert.equal(lista.count(), 1);
     })
-    it("Está ordenada cuando se agrega al principio.", function() {
+    it("La lista está ordenada cuando se lo agrega al principio.", function() {
         lista.add("animal", "perro", false);
         assert.deepEqual(lista.find_all(), [{clave: "animal", valor: "perro"}, {clave: "edificio", valor: "casa"}]);
+        assert.equal(lista.count(), 2);
     })
-    it("Está ordenada cuando se agrega al final.", function() {
+    it("La lista está ordenada cuando se lo agrega al final.", function() {
         lista.add("accion", "correr");
         assert.deepEqual(lista.find_all(), [{clave: "accion", valor: "correr"}, {clave: "animal", valor: "perro"}, {clave: "edificio", valor: "casa"}]);
+        assert.equal(lista.count(), 3);
+    })
+    it("También se lo puede borrar.", function() {
+        assert.equal(lista.delete("edificio"), true);
+        assert.deepEqual(lista.find_all(), [{clave: "accion", valor: "correr"}, {clave: "animal", valor: "perro"}]);
+        assert.equal(lista.count(), 2);
     })
 })
