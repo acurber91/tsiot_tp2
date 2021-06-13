@@ -52,19 +52,30 @@ Por otro lado, el archivo `test_lista.js` dentro de la carpeta `test` implementa
         ✓ Hay cero elementos.
         ✓ No se encuentra ninguna clave.
 
-    Cuando se crea una lista con un elemento:
-        ✓ Hay un elemento.
-        ✓ Solo acepta cadenas de texto.
-        ✓ Se recupera el valor a partir de la clave.
-        ✓ Si se agrega una clave existente, se actualiza el valor.
+    No se debe agregar un elemento:
+        ✓ Si su clave o valor no es una cadena de texto.
 
     Cuando se agrega un elemento a una lista vacía:
-        ✓ La lista está ordenada.
-        ✓ La lista está ordenada cuando se lo agrega al principio.
-        ✓ La lista está ordenada cuando se lo agrega al final.
-        ✓ También se lo puede borrar.
+        ✓ Hay un elemento.
+        ✓ Se recupera el valor a partir de la clave.
+        ✓ La lista de claves está ordenada.
 
-    10 passing (7ms)
+    Cuando se agrega una clave existe a la lista:
+        ✓ Se actualiza el valor.
+
+    Cuando se agrega un elemento al principio de la lista:
+        ✓ La lista de claves está ordenada.
+
+    Cuando se agrega un elemento al final de la lista:
+        ✓ La lista de claves está ordenada.
+
+    Cuando se elimina un elemento de una lista con un único elemento:
+        ✓ No hay ningún elemento.
+        ✓ No se puede recuperar el valor a partir de la clave.
+        ✓ La lista de claves está vacía.
+
+
+    12 passing (8ms)
 
 ---
 
