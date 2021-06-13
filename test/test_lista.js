@@ -20,46 +20,69 @@ describe("En una lista vacía:", function() {
     })
 })
 
-describe("Cuando se crea una lista con un elemento:", function() {
+describe("No se debe agregar un elemento:", function() {
     var lista = new Lista();
-    lista.add("clave", "valor");
-    it("Hay un elemento.", function() {
-        assert.equal(lista.count(), 1);
-    })
     lista.add(4, 6);
-    it("Solo acepta cadenas de texto.", function() {
-        assert.equal(lista.count(), 1);
-    })
-    it("Se recupera el valor a partir de la clave.", function() {
-        assert.equal(lista.find("clave"), "valor");
-    })
-    it("Si se agrega una clave existente, se actualiza el valor.", function() {
-        lista.add("clave", "actualizado");
-        assert.equal(lista.find("clave"), "actualizado");
-        assert.equal(lista.count(), 1);
+    it("Si su clave o valor no es una cadena de texto.", function() {
+        assert.equal(lista.count(), 0);
     })
 })
 
 describe("Cuando se agrega un elemento a una lista vacía:", function() {
     var lista = new Lista();
-    it("La lista está ordenada.", function() {
-        lista.add("edificio", "casa");
-        assert.deepEqual(lista.find_all(), [{clave: "edificio", valor: "casa"}]);
+    lista.add("clave", "valor");
+    it("Hay un elemento.", function() {
         assert.equal(lista.count(), 1);
     })
-    it("La lista está ordenada cuando se lo agrega al principio.", function() {
-        lista.add("animal", "perro", false);
-        assert.deepEqual(lista.find_all(), [{clave: "animal", valor: "perro"}, {clave: "edificio", valor: "casa"}]);
+    it("Se recupera el valor a partir de la clave.", function() {
+        assert.equal(lista.find("clave"), "valor");
+    })
+    it("La lista de claves está ordenada.", function() {
+        assert.deepEqual(lista.find_all(), ["clave"]);
+    })
+})
+
+describe("Cuando se agrega una clave existe a la lista:", function() {
+    var lista = new Lista();
+    lista.add("clave", "valor");
+    lista.add("clave", "actualizado");
+    it("Se actualiza el valor.", function() {
+        assert.equal(lista.find("clave"), "actualizado");
+        assert.equal(lista.count(), 1);
+    })
+})
+
+describe("Cuando se agrega un elemento al principio de la lista:", function() {
+    var lista = new Lista();
+    lista.add("animal", "perro");
+    lista.add("edificio", "casa");
+    it("La lista de claves está ordenada.", function() {
+        assert.deepEqual(lista.find_all(), ["animal", "edificio"]);
         assert.equal(lista.count(), 2);
     })
-    it("La lista está ordenada cuando se lo agrega al final.", function() {
-        lista.add("accion", "correr");
-        assert.deepEqual(lista.find_all(), [{clave: "accion", valor: "correr"}, {clave: "animal", valor: "perro"}, {clave: "edificio", valor: "casa"}]);
-        assert.equal(lista.count(), 3);
-    })
-    it("También se lo puede borrar.", function() {
-        assert.equal(lista.delete("edificio"), true);
-        assert.deepEqual(lista.find_all(), [{clave: "accion", valor: "correr"}, {clave: "animal", valor: "perro"}]);
+})
+
+describe("Cuando se agrega un elemento al final de la lista:", function() {
+    var lista = new Lista();
+    lista.add("edificio", "casa");
+    lista.add("animal", "perro");
+    it("La lista de claves está ordenada.", function() {
+        assert.deepEqual(lista.find_all(), ["animal", "edificio"]);
         assert.equal(lista.count(), 2);
+    })
+})
+
+describe("Cuando se elimina un elemento de una lista con un único elemento:", function() {
+    var lista = new Lista();
+    lista.add("clave", "valor");
+    lista.delete("clave");
+    it("No hay ningún elemento.", function() {
+        assert.equal(lista.count(), 0);
+    })
+    it("No se puede recuperar el valor a partir de la clave.", function() {
+        assert.isNaN(lista.find("clave"));
+    })
+    it("La lista de claves está vacía.", function() {
+        assert.deepEqual(lista.find_all(), []);
     })
 })

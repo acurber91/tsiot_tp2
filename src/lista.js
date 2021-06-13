@@ -37,28 +37,18 @@ module.exports = class Lista {
             return index;
         }
         else {
+            console.log()
             return this.#elementos[index].valor;
         }
     }
 
-    // Ordena alfabéticamente las claves del vector.
-    sort() {
-        this.#elementos.sort((a, b) => a.clave.localeCompare(b.clave))
-    }
-
     // Agrega un conjunto clave - valor al vector. Si la clave ya existe, 
     // actualiza el valor asociado.
-    add(clave, valor, order = true) {
+    add(clave, valor) {
         if(typeof clave === "string" && typeof valor === "string") {
             var index = this.find_clave(clave);
             if(isNaN(index)) {
-                if(order == true) {
-                    this.#elementos.push({clave, valor});
-                }
-                else {
-                    this.#elementos.unshift({clave, valor});
-                }
-                this.sort();
+                this.#elementos.push({clave, valor});
             }
             else {
                 this.#elementos[index].valor = valor;
@@ -66,10 +56,15 @@ module.exports = class Lista {
         }
     }
 
-    // Devuelve todos los elementos del vector.
+    // Devuelve todas las claves del vector ordenadas.
     find_all()
     {
-        return this.#elementos;
+        var listado = [];
+        var claves = this.#elementos;
+        for(var i = 0; i < claves.length; i++) {
+            listado[i] = claves[i].clave;
+        }
+        return listado.sort();
     }
 
     // Elimina un conjunto clave - valor a partir de una clave.
